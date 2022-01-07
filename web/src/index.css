@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
 
 body {
     margin: 0;
@@ -15,6 +16,8 @@ body {
     display: flex;
     padding: 2rem 0;
     background: #111;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
   }
   
   nav section {
@@ -36,19 +39,17 @@ body {
   }
   
   a {
-    color: #ea3546;
+    color:white;
     text-decoration: none;
   }
   
   section {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 1.5rem;
+    padding: 0 3rem;
   }
   
   section h1 {
     font-size: 3rem;
+    font-family:  'Aldrich', sans-serif;
   }
   
   input, select, textarea {
@@ -96,11 +97,12 @@ body {
   
   .button {
     display: inline-block;
-    background: #ea3546;
+    background: slategray;
     color: white;
     border-radius: 4px;
     font-weight: 700;
     padding: 0.75rem 1.5rem;
+    font-family:  'Aldrich', sans-serif;
   }
 
   .right {
@@ -114,4 +116,9 @@ body {
     padding: 1rem;
     background-color: slategray;
   }
-  
+
+  .navbar-logo{
+    height: 5rem;
+    float: left;
+    padding-right: 15rem;
+  }
