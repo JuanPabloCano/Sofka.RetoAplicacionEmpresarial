@@ -19,7 +19,7 @@ export default class UserRegisterForm extends Component {
             [event.target.name]: event.target.value,
         });
     }
-
+    
     async handleSubmit(event) {
         event.preventDefault();
         this.setState({ error: "" });
@@ -85,7 +85,7 @@ export default class UserRegisterForm extends Component {
                             <p className="text-danger">{this.state.error}</p>
                         ) : null}
                         <button className="btn btn-dark button" type="submit">
-                            Login
+                            Registrarse
                         </button>
                     </div>
                     <br />
