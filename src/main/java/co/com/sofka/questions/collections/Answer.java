@@ -14,4 +14,6 @@ public class Answer {
     private String questionId;
     private String answer;
     private Integer position;
+    private String name;
+    private String key;
 }

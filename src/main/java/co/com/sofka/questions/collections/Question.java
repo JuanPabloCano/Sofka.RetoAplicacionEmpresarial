@@ -13,4 +13,6 @@ public class Question {
     private String question;
     private String type;
     private String category;
+    private String name;
+    private String key;
 }

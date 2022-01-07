@@ -41,7 +41,9 @@ public class MapperUtils {
                 entity.getUserId(),
                 entity.getQuestion(),
                 entity.getType(),
-                entity.getCategory()
+                entity.getCategory(),
+                entity.getName(),
+                entity.getKey()
         );
     }
 
@@ -49,7 +51,9 @@ public class MapperUtils {
         return entity -> new AnswerDTO(
                 entity.getId(),
                 entity.getUserId(),
-                entity.getAnswer()
+                entity.getAnswer(),
+                entity.getName(),
+                entity.getKey()
         );
     }
 }
