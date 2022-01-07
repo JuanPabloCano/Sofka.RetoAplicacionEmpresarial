@@ -1,18 +1,23 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import {  fetchQuestion, postAnswer } from '../actions/questionActions'
+import { fetchQuestion, postAnswer } from '../actions/questionActions'
 import { connect } from 'react-redux'
 import { Question } from '../components/Question'
+import { FormInput } from "../components/FormInput"
 
-const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, userId }) => {
-    const { register, handleSubmit } = useForm();
+const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, userId, name }) => {
+    const [content, setContent] = useState("")
     const { id } = match.params
     const history = useHistory();
 
-    const onSubmit = data => {
-        data.userId =  userId;
-        data.questionId = id;
+    const onSubmit = e => {
+        e.preventDefault();
+        const data = {
+            userId,
+            questionId: id,
+            name,
+            answer: content,
+        }
         dispatch(postAnswer(data));
     };
 
@@ -39,10 +44,10 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
             {renderQuestion()}
             <h1>New Answer</h1>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
                 <div>
                     <label htmlFor="answer">Answer</label>
-                    <textarea id="answer" {...register("answer", { required: true, maxLength: 300 })} />
+                    <FormInput id="form-question__text" setContent={setContent} />
                 </div>
                 <button type="submit" className="btn btn-dark button" disabled={loading} >{
                     loading ? "Saving ...." : "Save"
@@ -58,7 +63,9 @@ const mapStateToProps = state => ({
     redirect: state.question.redirect,
     question: state.question.question,
     hasErrors: state.question.hasErrors,
-    userId: state.auth.uid
+    userId: state.auth.uid,
+    name: state.auth.displayName
+
 })
 
 export default connect(mapStateToProps)(FormPage)
