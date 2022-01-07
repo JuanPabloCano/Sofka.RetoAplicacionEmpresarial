@@ -8,7 +8,7 @@ import {
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import { login, logout } from './actions/authActions';
+import { login } from './actions/authActions';
 import { PublicNavbar, PrivateNavbar } from './components/Navbar'
 import HomePage from './pages/HomePage'
 import Footer from "./components/Footer"
@@ -18,16 +18,9 @@ import QuestionFormPage from './pages/QuestionFormPage'
 import AnswerFormPage from './pages/AnswerFormPage'
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
+import LoginForm from "./pages/LoginForm";
+import UserRegisterForm from './pages/RegisterForm';
 
-firebase.initializeApp({
-  apiKey: "AIzaSyBH5JVKTgPqkI9eMDpyQMh11jvfQPmfbP8",
-  authDomain: "aplicacion-empresarial.firebaseapp.com",
-  projectId: "aplicacion-empresarial",
-  storageBucket: "aplicacion-empresarial.appspot.com",
-  messagingSenderId: "295300895767",
-  appId: "1:295300895767:web:c5ddb14829f5d8313e7852",
-  measurementId: "G-ZL8DKTPSYE"
-});
 
 const auth = firebase.auth();
 
@@ -44,7 +37,7 @@ const App = ({ dispatch }) => {
             <PrivateNavbar />
             <Switch>
               <Route exact path="/" component={() => {
-                return <HomePage><SignOut dispatch={dispatch} /></HomePage>
+                return <HomePage></HomePage>
               }} />
               <Route exact path="/questions" component={QuestionsPage} />
               <Route exact path="/question/:id" component={SingleQuestionPage} />
@@ -63,6 +56,8 @@ const App = ({ dispatch }) => {
               <Route exact path="/questions" component={QuestionsPage} />
               <Route exact path="/question/:id" component={SingleQuestionPage} />
               <Route exact path="/answer/:id" component={AnswerFormPage} />
+              <Route exact path="/login" component={LoginForm} dispatch={dispatch} />
+              <Route exact path="/userRegister" component={UserRegisterForm} dispatch={dispatch} />
               <Redirect to="/" />
             </Switch>
           </>
@@ -78,23 +73,7 @@ function SignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   };
-  return <button className="button right" onClick={signInWithGoogle}>Sign in with google</button>;
-}
-
-function SignOut({ dispatch }) {
-  return (
-    auth.currentUser && (
-      <button
-        className="button right"
-        onClick={() => {
-          dispatch(logout())
-          auth.signOut();
-        }}
-      >
-        Sign out
-      </button>
-    )
-  );
+  return <button className="btn btn-dark button right" onClick={signInWithGoogle}>Sign in with google</button>;
 }
 
 export default App;
