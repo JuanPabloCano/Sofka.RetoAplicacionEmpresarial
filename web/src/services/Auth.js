@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import "firebase/auth"
-import {auth} from "./firebase"
+import {auth} from "./Firebase"
 
 
 export const LOGIN = 'LOGIN'

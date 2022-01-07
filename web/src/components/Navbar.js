@@ -27,7 +27,8 @@ export const PublicNavbar = () => (
       <Link to="/">Home</Link>
       <img className='navbar-logo' src={logo} alt='...' />
       <Link to="/questions">Questions</Link>
-      <Link className='navbar-login__button' to={"/login"}>Log-in</Link>
+      <Link to={"/login"}>Log-in</Link>
+      <Link to={"/userRegister"}>Registrarse</Link>
     </section>
   </nav>
 )
