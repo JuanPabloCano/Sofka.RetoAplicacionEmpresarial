@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -103,5 +105,13 @@ body {
 
   .right {
     float: right;
+  }
+
+  .footer{
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: slategray;
   }
   
