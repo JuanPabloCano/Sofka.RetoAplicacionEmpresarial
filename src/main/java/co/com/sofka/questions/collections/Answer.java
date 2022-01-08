@@ -15,5 +15,5 @@ public class Answer {
     private String answer;
     private Integer position;
     private String name;
-    private String key;
+    private String url;
 }

@@ -23,9 +23,13 @@ public class QuestionDTO {
     @NotBlank
     private String category;
     private List<AnswerDTO> answers;
-    private String name;
-    private String key;
 
+    private String url;
+    private String nombre;
+
+    private Integer numberOfReviews = 0;
+    private Integer sumOfReviewScores = 0;
+    private List<String> userReviews = new ArrayList<>();
 
     public QuestionDTO() {
 
@@ -38,14 +42,37 @@ public class QuestionDTO {
         this.category = category;
     }
 
-    public QuestionDTO(String id, String userId, String question, String type, String category, String name, String key) {
+    public QuestionDTO(String id, String userId, String question, String type, String category) {
         this.id = id;
         this.userId = userId;
         this.question = question;
         this.type = type;
         this.category = category;
-        this.name = name;
-        this.key = key;
+    }
+
+    public QuestionDTO(String id, String userId, String question, String type, String category,String url, String nombre) {
+        this.id = id;
+        this.userId = userId;
+        this.question = question;
+        this.type = type;
+        this.category = category;
+        this.url = url;
+        this.nombre = nombre;
+    }
+
+    public QuestionDTO(String id, String userId, String question, String type, String category,
+                       String url, String nombre, Integer numberOfReviews, Integer sumOfReviewScores,
+                       List<String> userReviews) {
+        this.id = id;
+        this.userId = userId;
+        this.question = question;
+        this.type = type;
+        this.category = category;
+        this.url = url;
+        this.nombre = nombre;
+        this.numberOfReviews = numberOfReviews;
+        this.sumOfReviewScores = sumOfReviewScores;
+        this.userReviews = userReviews;
     }
 
     public List<AnswerDTO> getAnswers() {

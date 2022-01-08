@@ -1,0 +1,30 @@
+package co.com.sofka.questions.usecases;
+
+import co.com.sofka.questions.model.Review;
+import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.reposioties.QuestionRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+import reactor.core.publisher.Mono;
+
+@AllArgsConstructor
+@Service
+@Validated
+public class AddReviewUseCase {
+    private final QuestionRepository questionRepository;
+    private final MapperUtils mapperUtils;
+    private final UpdateQuestionUseCase updateQuestionUseCase;
+
+    public Mono<QuestionDTO> addReview(Review review) {
+        return questionRepository.findById(review.getQuestionId()).flatMap(
+                question -> {
+                    question.setNumberOfReviews(question.getNumberOfReviews() + 1);
+                    question.setSumOfReviewScores(question.getSumOfReviewScores() + Integer.parseInt(review.getScore()));
+                    question.getUserReviews().add(review.getUserId());
+                    question.setUserReviews(question.getUserReviews());
+                    return updateQuestionUseCase.apply(mapperUtils.mapEntityToQuestion().apply(question));
+                }
+        );
+    }
+}
