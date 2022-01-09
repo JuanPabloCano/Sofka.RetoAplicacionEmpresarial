@@ -9,6 +9,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import { login } from './actions/authActions';
+import { login, logout } from './actions/authActions';
 import { PublicNavbar, PrivateNavbar } from './components/Navbar'
 import HomePage from './pages/HomePage'
 import Footer from "./components/Footer"
@@ -21,6 +22,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import LoginForm from "./pages/LoginForm";
 import UserRegisterForm from './pages/RegisterForm';
 
+firebase.initializeApp({
+  apiKey: "AIzaSyBH5JVKTgPqkI9eMDpyQMh11jvfQPmfbP8",
+  authDomain: "aplicacion-empresarial.firebaseapp.com",
+  projectId: "aplicacion-empresarial",
+  storageBucket: "aplicacion-empresarial.appspot.com",
+  messagingSenderId: "295300895767",
+  appId: "1:295300895767:web:c5ddb14829f5d8313e7852",
+  measurementId: "G-ZL8DKTPSYE"
+});
 
 const auth = firebase.auth();
 
@@ -28,6 +38,7 @@ const App = ({ dispatch }) => {
   const [user] = useAuthState(auth);
   if (user) {
     dispatch(login(user.email, user.uid, user.photoURL, user.displayName))
+    dispatch(login(user.email, user.uid))
   }
   return (
     <>
@@ -38,6 +49,7 @@ const App = ({ dispatch }) => {
             <Switch>
               <Route exact path="/" component={() => {
                 return <HomePage></HomePage>
+                return <HomePage><SignOut dispatch={dispatch} /></HomePage>
               }} />
               <Route exact path="/questions" component={QuestionsPage} />
               <Route exact path="/question/:id" component={SingleQuestionPage} />
