@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { postReview } from "../actions/questionActions";
-
 import { useForm } from "react-hook-form";
 import Rate from "../components/Rate";
 

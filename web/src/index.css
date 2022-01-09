@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -120,4 +120,8 @@ body {
     height: 5rem;
     float: left;
     padding-right: 15rem;
+  }
+
+  .question-style{
+    font-family: 'Secular One', sans-serif;
   }

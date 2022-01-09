@@ -4,10 +4,10 @@ import { postQuestion } from '../actions/questionActions'
 import { connect } from 'react-redux'
 import { FormInput } from "../components/FormInput"
 
-const FormPage = ({ dispatch, loading, redirect, userId, name}) => {
+const FormPage = ({ dispatch, loading, redirect, userId, url, name, userEmail }) => {
     const [formState, setFormState] = useState({
         type: "OPEN (LONG OPEN BOX)",
-        category: "TECHNOLOGY AND COMPUTER"
+        category: "SOFTWARE DEVELOPMENT"
     })
 
     const [content, setContent] = useState("")
@@ -18,8 +18,10 @@ const FormPage = ({ dispatch, loading, redirect, userId, name}) => {
         const data = {
             ...formState,
             userId,
+            url,
             name,
             question: content,
+            userEmail
         }
         dispatch(postQuestion(data));
     };
@@ -76,7 +78,9 @@ const mapStateToProps = state => ({
     redirect: state.question.redirect,
     hasErrors: state.question.hasErrors,
     userId: state.auth.uid,
-    name: state.auth.displayName
+    url: state.auth.photoURL,
+    name: state.auth.displayName,
+    userEmail: state.auth.email
 })
 
 export default connect(mapStateToProps)(FormPage)
