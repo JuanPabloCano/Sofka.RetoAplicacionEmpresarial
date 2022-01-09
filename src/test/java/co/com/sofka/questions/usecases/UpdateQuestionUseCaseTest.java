@@ -13,38 +13,43 @@ import reactor.core.publisher.Mono;
 
 import java.util.Objects;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 @SpringBootTest
-class GetUseCaseTest {
+class UpdateQuestionUseCaseTest {
+    @SpyBean
+    private UpdateQuestionUseCase updateQuestionUseCase;
 
     @MockBean
-    private QuestionRepository questionRepository;
-    @SpyBean
-    private GetUseCase getQuestion;
+    private QuestionRepository repository;
 
     @Test
-    void getQuestion() {
+    void updateTest() {
 
-        var questionDT0 = new QuestionDTO("xxxx", "1", "What is Java", "Múltiple",
+        var questionDTO = new QuestionDTO("xxxx", "1", "What is Java", "Múltiple",
                 "Software", "xxxx", "Juan");
 
         var question = new Question();
         question.setId("xxxx");
         question.setUserId("1");
-        question.setQuestion("What is Java");
-        question.setType("Múltiple");
+        question.setQuestion("What is Python");
+        question.setType("ünica opción");
         question.setCategory("Software");
         question.setUrl("xxxx");
-        question.setName("Juan");
+        question.setName("Pablo");
 
-        Mockito.when(questionRepository.findById(Mockito.any(String.class))).thenReturn(Mono.just(question));
+        when(repository.save(Mockito.any(Question.class))).thenReturn(Mono.just(question));
 
-        var result = getQuestion.apply("xxxx");
+        var result = updateQuestionUseCase.apply(questionDTO);
+
         Assertions.assertEquals(Objects.requireNonNull(result.block()).getQuestion(), question.getQuestion());
         Assertions.assertEquals(Objects.requireNonNull(result.block()).getId(), question.getId());
         Assertions.assertEquals(Objects.requireNonNull(result.block()).getUserId(), question.getUserId());
         Assertions.assertEquals(Objects.requireNonNull(result.block()).getType(), question.getType());
         Assertions.assertEquals(Objects.requireNonNull(result.block()).getCategory(), question.getCategory());
 
-        Mockito.verify(questionRepository, Mockito.times(1)).findById("xxxx");
+        Mockito.verify(repository, Mockito.times(1)).save(any());
     }
 }

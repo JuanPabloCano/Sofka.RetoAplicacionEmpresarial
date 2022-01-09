@@ -20,20 +20,20 @@ public class AnswerDTO {
     private Integer position;
 
     private String url;
-    private String nombre;
+    private String name;
 
 
     public AnswerDTO() {
 
     }
 
-    public AnswerDTO(String id,@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer,String url,String nombre) {
+    public AnswerDTO(String id,@NotBlank String questionId, @NotBlank String userId, @NotBlank String answer,String url,String name) {
         this.id=id;
         this.userId = userId;
         this.questionId = questionId;
         this.answer = answer;
         this.url=url;
-        this.nombre=nombre;
+        this.name = name;
     }
 
     public Integer getPosition() {

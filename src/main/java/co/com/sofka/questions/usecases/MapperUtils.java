@@ -19,7 +19,7 @@ public class MapperUtils {
             answer.setUserId(updateAnswer.getUserId());
             answer.setAnswer(updateAnswer.getAnswer());
             answer.setUrl(updateAnswer.getUrl());
-            answer.setName(updateAnswer.getNombre());
+            answer.setName(updateAnswer.getName());
             return answer;
         };
     }
@@ -34,7 +34,7 @@ public class MapperUtils {
             question.setUserId(updateQuestion.getUserId());
             question.setType(updateQuestion.getType());
             question.setUrl(updateQuestion.getUrl());
-            question.setName(updateQuestion.getNombre());
+            question.setName(updateQuestion.getName());
             question.setNumberOfReviews(updateQuestion.getNumberOfReviews());
             question.setSumOfReviewScores(updateQuestion.getSumOfReviewScores());
             question.setUserReviews(updateQuestion.getUserReviews());
