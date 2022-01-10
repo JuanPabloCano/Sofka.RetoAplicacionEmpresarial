@@ -38,8 +38,6 @@ const FormPage = ({ dispatch, loading, redirect, match, hasErrors, question, use
 
         return <Question question={question} />
     }
-
-
     return (
         <section>
             {renderQuestion()}

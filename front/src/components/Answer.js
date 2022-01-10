@@ -1,6 +1,6 @@
 import React from 'react'
-import "firebase/firestore";
-import "firebase/auth";
+import 'firebase/firestore';
+import 'firebase/auth';
 import user from "../images/user.png"
 import Swal from 'sweetalert2'
 
