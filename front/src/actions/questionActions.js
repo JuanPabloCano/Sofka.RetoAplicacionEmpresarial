@@ -1,4 +1,4 @@
-const URL_BASE = 'https://questionsanswersdemo.herokuapp.com/';
+const URL_BASE = 'https://questionsanswersdemo.herokuapp.com';
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
@@ -156,5 +156,3 @@ export function postReview(score, id, user) {
         }
     };
 }
-
-

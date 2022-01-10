@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { signin, signInWithGoogle } from "../services/Auth";
+import { signup, signInWithGoogle } from "../services/Auth";
 
 export default class UserRegisterForm extends Component {
     constructor() {
@@ -24,7 +24,7 @@ export default class UserRegisterForm extends Component {
         event.preventDefault();
         this.setState({ error: "" });
         try {
-            await signin(this.state.email, this.state.password);
+            await signup(this.state.email, this.state.password);
         } catch (error) {
             this.setState({ error: error.message });
         }
